@@ -22,7 +22,7 @@ WORKDIR /app
 
 # Install runtime dependencies only
 COPY package*.json ./
-RUN npm ci --only=production && npm cache clean --force
+RUN npm install --only=production && npm cache clean --force
 
 # Copy built application
 COPY --from=builder /app/dist ./dist
