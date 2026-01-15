@@ -6,8 +6,8 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies (including devDependencies for building)
-RUN npm ci
+# Install all dependencies (dev + prod)
+RUN npm install
 
 # Copy source code
 COPY . .
@@ -18,7 +18,7 @@ RUN npm run build
 # Runtime stage
 FROM node:20-alpine
 
-WORKDIR /app
+WORKdir /app
 
 # Install runtime dependencies only
 COPY package*.json ./
